@@ -78,7 +78,7 @@ def write_entity_data(entity, path, format='csv', **kwargs):
         loading_info (dict) : Information on storage location and format of entity data.
     '''
     format = format.lower()
-    if isinstance(entity.df, dd.core.DataFrame):
+    if isinstance(entity.df, dd.DataFrame):
         basename = "{}-*.{}".format(entity.id, format)
     else:
         basename = '.'.join([entity.id, format])
@@ -104,7 +104,7 @@ def write_entity_data(entity, path, format='csv', **kwargs):
         df.to_parquet(file, **kwargs)
     elif format == 'pickle':
         # Dask currently does not support to_pickle
-        if isinstance(df, dd.core.DataFrame):
+        if isinstance(df, dd.DataFrame):
             df = df.compute()
         df.to_pickle(file, **kwargs)
     else:

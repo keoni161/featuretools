@@ -280,7 +280,7 @@ class EqualScalar(TransformPrimitive):
 
     def get_function(self):
         def equal_scalar(vals):
-            if isinstance(vals, dd.core.Series):
+            if isinstance(vals, dd.Series):
                 return vals == self.value
             return pd.Series(vals) == self.value
         return equal_scalar

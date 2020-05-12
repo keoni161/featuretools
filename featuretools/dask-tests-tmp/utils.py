@@ -76,7 +76,7 @@ def make_labels(es, training_window, cutoff_time,
 
     valid_pred_data = prediction_data.merge(orders)
 
-    if isinstance(users_in_training, dd.core.Series):
+    if isinstance(users_in_training, dd.Series):
         users_in_training = users_in_training.compute()
 
     valid_pred_data = valid_pred_data[valid_pred_data["user_id"].isin(users_in_training)]
@@ -89,7 +89,7 @@ def make_labels(es, training_window, cutoff_time,
     #  rename and reorder
     labels.columns = ["user_id", "label", "time", ]
     labels = labels[["user_id", "time", "label"]]
-    if isinstance(labels, dd.core.DataFrame):
+    if isinstance(labels, dd.DataFrame):
         labels = labels.compute()
     return labels
 
